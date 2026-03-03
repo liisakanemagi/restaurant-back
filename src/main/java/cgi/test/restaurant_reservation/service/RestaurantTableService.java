@@ -18,12 +18,22 @@ public class RestaurantTableService {
     private final RestaurantTableRepository restaurantTableRepository;
     private final RestaurantTableMapper restaurantTableMapper;
 
-    public RestaurantTable getValidTable(Integer tableId){
+    public RestaurantTable getValidRestaurantTable(Integer tableId){
         return restaurantTableRepository.findById(tableId)
                 .orElseThrow(() -> new DataNotFoundException(ErrorCode.TABLE_NOT_FOUND));
     }
 
-    public List<RestaurantTableDto> getTables(){
+    public RestaurantTable updateRestaurantTable(Integer tableId, RestaurantTableDto restaurantTableDto){
+
+        RestaurantTable restaurantTable = getValidRestaurantTable(tableId);
+        restaurantTableMapper.updateRestaurantTable(restaurantTableDto, restaurantTable);
+
+        restaurantTableRepository.save(restaurantTable);
+        return restaurantTable;
+    }
+
+
+    public List<RestaurantTableDto> getRestaurantTables(){
         List<RestaurantTable> restaurantTables = restaurantTableRepository.findAll();
         return restaurantTableMapper.toRestaurantTableDtos(restaurantTables);
     }

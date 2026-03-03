@@ -6,6 +6,6 @@ import java.util.Optional;
 
 public interface RestaurantTableRepository extends JpaRepository<RestaurantTable, Integer> {
 
-    @Override
+
     Optional<RestaurantTable> findById(Integer id);
 }
