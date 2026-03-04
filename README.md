@@ -17,13 +17,15 @@
 
 ### Päev 2
 
-* **Tegevused:** Restorani plaani ja filtrite läbimõtlemine, DB tabelite täitmine andmetega, entity klasside loomine.
+* **Tegevused:** Restorani plaani ja filtrite läbimõtlemine
+* DB tabelite täitmine andmetega
+* entity klasside loomine.
 * **Ajakulu:** ~ 3 tundi
 
 ### Päev 3
 
-* **Tegevused:** getTables funktsionaalsuse loomine, silmitsi seismine probleemiga, kus rakendus oli ühendatud vale
-andmebaasi instanstiga (oli väga õpetlik probleemilahendamine)
+* **Tegevused:** getTables funktsionaalsuse loomine
+* silmitsi seismine probleemiga, kus rakendus oli ühendatud vale andmebaasi instanstiga (oli väga õpetlik probleemilahendamine)
 * **Ajakulu:** ~ 2 tundi
 
 ### Päev 4
@@ -32,6 +34,13 @@ andmebaasi instanstiga (oli väga õpetlik probleemilahendamine)
 generateMockReservations funktsionaalsuse loomine, kus õppisin ja kasutasin "Random" funktsionaalsust.
 * **Ajakulu:** ~ 3 tundi
 
+### Päev 5
+
+* **Tegevused:** getReservations funktsionaalsuse loomine
+* getAviailableRestaurantTables funktsionaalsuse loomine, et otsida laudu vastavalt ajale ja külaliste arvule (sealjuures 
+õppisin "Stream" funktsionaalsust)
+* **Ajakulu:** ~ 2 tundi
+
 ### AI kasutamine
 
 * **Abi projekti arhidektuuri planeerimises** *
@@ -39,3 +48,5 @@ generateMockReservations funktsionaalsuse loomine, kus õppisin ja kasutasin "Ra
 * **Entity klasside sisu valideerimine ja ülevaatus** *
 * **Tugi andmebaasiühenduse silumisel ja konfiguratsiooni kontrollimisel** *
 * **Konsultatsioon andmete genereerimise (MockDataService) loogika ja ajahalduse osas** *
+* **Java Stream API funktsionaalsuse õppimine** *
+* **SearchService' filtreerimisalgoritmi valideerimine (ai aitas minu loogika üle vaadata)** *
