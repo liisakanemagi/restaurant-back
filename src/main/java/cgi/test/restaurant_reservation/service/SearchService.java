@@ -29,6 +29,9 @@ public class SearchService {
 
         List<RestaurantTable> suitableRestaurantTables = getSuitableRestaurantTables(guestCount, isPrivate, isAccessible,
                 isWindowSeat, restaurantTables, occupiedRestaurantTableIds);
+
+        sortSuitableRestaurantTables(guestCount, suitableRestaurantTables);
+
         return restaurantTableMapper.toRestaurantTableDtos(suitableRestaurantTables);
     }
 
@@ -56,5 +59,14 @@ public class SearchService {
         }
         return suitableRestaurantTables;
     }
+
+    private static void sortSuitableRestaurantTables(Integer guestCount, List<RestaurantTable> suitableRestaurantTables) {
+        suitableRestaurantTables.sort((t1, t2) -> {
+            int waste1 = t1.getCapacity() - guestCount;
+            int waste2 = t2.getCapacity() - guestCount;
+            return Integer.compare(waste1, waste2);
+        });
+    }
+
 }
 
