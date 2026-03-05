@@ -19,13 +19,17 @@ public class SearchController {
     private final SearchService searchService;
 
     @GetMapping("/api/available")
-    @Operation(summary = "Vabade laudade pärimine",
-            description = "Tagastab nimekirja laudadest vastavalt vabale kellajale ja külaliste arvule")
+    @Operation(summary = "Vabade & sobivate laudade pärimine",
+            description = "Tagastab nimekirja laudadest vastavalt vabale kellajale, külaliste arvule ja broneerija eelistustele")
 
-    public List<RestaurantTableDto> getAvailableRestaurantTables(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-                                                       LocalDateTime startTime, @RequestParam Integer guestCount) {
+    public List<RestaurantTableDto> getFilteredRestaurantTables(
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startTime,
+            @RequestParam Integer guestCount,
+            @RequestParam(required = false) Boolean isPrivate,
+            @RequestParam(required = false) Boolean isAccessible,
+            @RequestParam(required = false) Boolean isWindowSeat) {
 
-        return searchService.getAvailableRestaurantTables(startTime, guestCount);
+        return searchService.getFilteredRestaurantTables(startTime, guestCount, isPrivate, isAccessible, isWindowSeat);
 
     }
 
