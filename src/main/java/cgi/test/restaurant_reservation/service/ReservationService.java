@@ -1,6 +1,5 @@
 package cgi.test.restaurant_reservation.service;
 
-import cgi.test.restaurant_reservation.Infrastructure.DataNotFoundException;
 import cgi.test.restaurant_reservation.Infrastructure.ErrorCode;
 import cgi.test.restaurant_reservation.Infrastructure.ForbiddenException;
 import cgi.test.restaurant_reservation.controller.reservation.ReservationDto;
@@ -33,15 +32,22 @@ public class ReservationService {
         RestaurantTable restaurantTable = restaurantTableService.getValidRestaurantTable(reservationInfo.getRestaurantTableId());
 
         LocalDateTime endTime = reservationInfo.getStartTime().plusHours(2);
+
+        validateTableAvailability(reservationInfo, restaurantTable, endTime);
+
+        Reservation reservation = reservationMapper.toReservation(reservationInfo);
+            reservation.setRestaurantTable(restaurantTable);
+            reservation.setEndTime(endTime);
+            Reservation savedReservation = reservationRepository.save(reservation);
+            return reservationMapper.toReservationDto(savedReservation);
+        }
+
+    private void validateTableAvailability(ReservationInfo reservationInfo, RestaurantTable restaurantTable, LocalDateTime endTime) {
         boolean bookingAlreadyExists = reservationRepository.existsByRestaurantTableAndStartTimeBeforeAndEndTimeAfter
                 (restaurantTable, endTime, reservationInfo.getStartTime());
         if (bookingAlreadyExists){
             throw new ForbiddenException(ErrorCode.RESTAURANT_TABLE_ALREADY_BOOKED);
         }
-            Reservation reservation = reservationMapper.toReservation(reservationInfo);
-            reservation.setRestaurantTable(restaurantTable);
-            Reservation savedReservation = reservationRepository.save(reservation);
-            return reservationMapper.toReservationDto(savedReservation);
-        }
+    }
 }
 
