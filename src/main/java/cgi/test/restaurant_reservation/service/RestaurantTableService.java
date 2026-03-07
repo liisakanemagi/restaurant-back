@@ -1,6 +1,6 @@
 package cgi.test.restaurant_reservation.service;
 
-import cgi.test.restaurant_reservation.Infrastructure.DataNotFoundException;
+import cgi.test.restaurant_reservation.Infrastructure.exception.DataNotFoundException;
 import cgi.test.restaurant_reservation.Infrastructure.ErrorCode;
 import cgi.test.restaurant_reservation.controller.restauranttable.RestaurantTableDto;
 import cgi.test.restaurant_reservation.persistence.restauranttable.RestaurantTable;

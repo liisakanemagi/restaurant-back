@@ -24,7 +24,7 @@ public class ReservationController {
     @Operation(summary = "Reserveeringu tegemine", description = "Tagastab reserveeringu DTO objekti")
 
     public ReservationDto postReservation(@RequestBody ReservationInfo reservationInfo) {
-        return reservationService.postReservation(reservationInfo);
+        return reservationService.createReservation(reservationInfo);
     }
 
     @DeleteMapping("/api/reservation/{reservationId}")

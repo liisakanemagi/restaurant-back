@@ -1,5 +1,6 @@
-package cgi.test.restaurant_reservation.Infrastructure;
+package cgi.test.restaurant_reservation.Infrastructure.exception;
 
+import cgi.test.restaurant_reservation.Infrastructure.ErrorCode;
 import lombok.Getter;
 
 @Getter
