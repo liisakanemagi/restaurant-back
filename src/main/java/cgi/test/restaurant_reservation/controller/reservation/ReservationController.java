@@ -27,7 +27,7 @@ public class ReservationController {
         return reservationService.postReservation(reservationInfo);
     }
 
-    @DeleteMapping("/api/reservation/{tableId}")
+    @DeleteMapping("/api/reservation/{reservationId}")
     @Operation(summary = "Reserveeringu kustutamine")
 
     public void deleteReservation(@RequestParam Integer reservationId) {
