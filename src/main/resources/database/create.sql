@@ -12,11 +12,12 @@ CREATE TABLE IF NOT EXISTS restaurant_table
 
 CREATE TABLE IF NOT EXISTS reservation
 (
-    id            SERIAL PRIMARY KEY,
-    table_id      INT          NOT NULL,
-    customer_name VARCHAR(100) NOT NULL,
-    start_time    TIMESTAMP    NOT NULL,
-    end_time      TIMESTAMP    NOT NULL,
-    guest_count   INT          NOT NULL,
+    id                    SERIAL PRIMARY KEY,
+    table_id              INT          NOT NULL,
+    customer_name         VARCHAR(100) NOT NULL,
+    customer_phone_number VARCHAR(100)  NOT NULL,
+    start_time            TIMESTAMP    NOT NULL,
+    end_time              TIMESTAMP    NOT NULL,
+    guest_count           INT          NOT NULL,
     CONSTRAINT fk_table FOREIGN KEY (table_id) REFERENCES restaurant_table (id)
 );

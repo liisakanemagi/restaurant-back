@@ -25,6 +25,10 @@ public class ReservationDto implements Serializable {
     private String customerName;
 
     @NotNull
+    @Size(max = 100)
+    private String customerPhoneNumber;
+
+    @NotNull
     private LocalDateTime startTime;
 
     @NotNull

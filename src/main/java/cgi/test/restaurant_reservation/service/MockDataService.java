@@ -34,24 +34,25 @@ public class MockDataService {
         List<RestaurantTable> restaurantTables = restaurantTableRepository.findAll();
         for (RestaurantTable restaurantTable : restaurantTables) {
 
-          int randomHour = random.nextInt(12, 21);
-          int randomMinutes = random.nextBoolean() ? 0 : 30;
+            int randomHour = random.nextInt(12, 21);
+            int randomMinutes = random.nextBoolean() ? 0 : 30;
 
-          LocalDateTime startTime = LocalDateTime.now()
-                  .withHour(randomHour)
-                  .withMinute(randomMinutes)
-                  .withSecond(0)
-                  .withNano(0);
+            LocalDateTime startTime = LocalDateTime.now()
+                    .withHour(randomHour)
+                    .withMinute(randomMinutes)
+                    .withSecond(0)
+                    .withNano(0);
 
-          Reservation reservation = new Reservation();
+            Reservation reservation = new Reservation();
 
-          reservation.setRestaurantTable(restaurantTable);
-          reservation.setStartTime(startTime);
-          reservation.setEndTime(startTime.plusHours(2));
-          reservation.setGuestCount(random.nextInt(1, restaurantTable.getCapacity() +1));
-          reservation.setCustomerName("Klient");
+            reservation.setRestaurantTable(restaurantTable);
+            reservation.setStartTime(startTime);
+            reservation.setEndTime(startTime.plusHours(2));
+            reservation.setGuestCount(random.nextInt(1, restaurantTable.getCapacity() + 1));
+            reservation.setCustomerName("Klient");
+            reservation.setCustomerPhoneNumber("+372 55555555");
 
-          reservationRepository.save(reservation);
+            reservationRepository.save(reservation);
         }
     }
 

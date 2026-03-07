@@ -29,6 +29,11 @@ public class Reservation {
     @Column(name = "customer_name", nullable = false, length = 100)
     private String customerName;
 
+    @Size(max = 100)
+    @NotNull
+    @Column(name = "customer_phone_number", nullable = false, length = 100)
+    private String customerPhoneNumber;
+
     @NotNull
     @Column(name = "start_time", nullable = false)
     private LocalDateTime startTime;
