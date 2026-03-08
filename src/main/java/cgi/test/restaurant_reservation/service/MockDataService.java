@@ -25,35 +25,53 @@ public class MockDataService {
     }
 
     @EventListener(ApplicationReadyEvent.class)
-    public void generateMockReservations() {
+    public void setUpMockReservations() {
 
         if (reservationRepository.count() > 0) {
             return;
         }
 
         List<RestaurantTable> restaurantTables = restaurantTableRepository.findAll();
-        for (RestaurantTable restaurantTable : restaurantTables) {
+        
+        for (int day = 0; day < 14; day++) {
 
-            int randomHour = random.nextInt(12, 21);
-            int randomMinutes = random.nextBoolean() ? 0 : 30;
+            DailyReservations result = getGenerateReservationsForThisDay(day);
 
-            LocalDateTime startTime = LocalDateTime.now()
-                    .withHour(randomHour)
-                    .withMinute(randomMinutes)
-                    .withSecond(0)
-                    .withNano(0);
-
-            Reservation reservation = new Reservation();
-
-            reservation.setRestaurantTable(restaurantTable);
-            reservation.setStartTime(startTime);
-            reservation.setEndTime(startTime.plusHours(2));
-            reservation.setGuestCount(random.nextInt(1, restaurantTable.getCapacity() + 1));
-            reservation.setCustomerName("Klient");
-            reservation.setCustomerPhoneNumber("+372 55555555");
-
-            reservationRepository.save(reservation);
+            for(int i = 0; i < result.reservationsThisDay(); i++)
+                createSingleMockReservation(restaurantTables, result.date(), day, i);
         }
+    }
+
+    private DailyReservations getGenerateReservationsForThisDay(int day) {
+        LocalDateTime date = LocalDateTime.now().plusDays(day);
+        int reservationsThisDay = 4 + random.nextInt(4);
+        return new DailyReservations(date, reservationsThisDay);
+    }
+
+
+    private record DailyReservations(LocalDateTime date, int reservationsThisDay) {
+    }
+
+    private void createSingleMockReservation(List<RestaurantTable> restaurantTables, LocalDateTime date, int day, int i) {
+        Reservation reservation = new Reservation();
+        RestaurantTable restaurantTable = restaurantTables.get(random.nextInt(restaurantTables.size()));
+
+        int randomHour = random.nextInt(12, 21);
+        int randomMinutes = random.nextBoolean() ? 0 : 30;
+
+        LocalDateTime startTime = date
+                .withHour(randomHour)
+                .withMinute(randomMinutes)
+                .withSecond(0)
+                .withNano(0);
+
+        reservation.setRestaurantTable(restaurantTable);
+        reservation.setStartTime(startTime);
+        reservation.setEndTime(startTime.plusHours(2));
+        reservation.setGuestCount(random.nextInt(1, restaurantTable.getCapacity() + 1));
+        reservation.setCustomerName("Klient" + (day + 1) + "-" + (i + 1));
+        reservation.setCustomerPhoneNumber("+372 555"+ (1000 + random.nextInt(9999)));
+        reservationRepository.save(reservation);
     }
 
 }
