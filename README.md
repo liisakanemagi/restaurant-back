@@ -29,12 +29,12 @@
 * nimekiri sorteeritakse vastavalt külaliste arvule, et jagada külalised laudadesse võimalikult õkonoomlselt. 
 * **Laudade filtreerimise võimalused:** Klient saab valida, kas ta soovib broneerida ratastooliga ligipääsetavat lauda,
 * lauda akna all või lauda privaatses vaheseinaga alas. 
-* * **Saadavuse kontroll:** Süsteem kontrollib, et samal kellaajal ei oleks laud juba teise broneeringuga hõivatud (arvestades 2h akent).
+* **Saadavuse kontroll:** Süsteem kontrollib, et samal kellaajal ei oleks laud juba teise broneeringuga hõivatud (arvestades 2h akent).
 * **Lisakontroll:** Süsteem ei luba luua broneeringuid, kui kliendiandmed ei ole sisestatud.
 
 ## Tulevikuvalmidus
 
-*Kuigi esmane vaade on suunatud kliendile, on backend ehitatud laiendatavust silmas pidades:
+* Kuigi esmane vaade on suunatud kliendile, on backend ehitatud laiendatavust silmas pidades:
 
 * **Admin-liidese valmidus: updateRestaurantTable funktsionaalsus, mis toetab laudade asukohtade (koordinaatide) ja 
 * andmete muutmist.
@@ -70,7 +70,7 @@
 ### Päev 4
 
 * **Tegevused:** updateRestaurantTable funktsionaalsuse loomine, et admin saaks tulevikus muuta laua asukohti või muid andmeid,
-*generateMockReservations funktsionaalsuse loomine, kus õppisin ja kasutasin "Random" funktsionaalsust.
+* generateMockReservations funktsionaalsuse loomine, kus õppisin ja kasutasin "Random" funktsionaalsust.
 * **Ajakulu:** ~ 3 tundi
 
 ### Päev 5
@@ -98,7 +98,7 @@ ja sobivate laudade sorteerimine vastavalt külaliste arvule.
 ### Päev 8
 
 * **Tegevused:** postReservation funktsionaalsuse ja valideerimisahela loomine - lisasin kontrollid (saadavus, mahutavus),
-*et tagada back-endi töökindlus ja välistada vigased broneeringud.
+* et tagada back-endi töökindlus ja välistada vigased broneeringud.
 * **Ajakulu:** ~ 1,5 tundi
 
 ### Päev 9
@@ -107,22 +107,21 @@ ja sobivate laudade sorteerimine vastavalt külaliste arvule.
 * README täiendamine ja viimistlus
 * **Ajakulu:** ~ 2 tundi
 
-* **Ajakulu kokku ~ 17h 15min** *
-* Praktika alguseks suvel olen kindlasti tänu igapäevasele praktiseerimisele kiirem ja efektiivsem - selle proovitöö 
-* puhul pidasin oluliseks pigem kvaliteeti ja koodi sisulist mõistmist ja õppimist kui kiirust.
+* **Ajakulu kokku ~ 17h 15min** 
+* (pidasin oluliseks pigem kvaliteeti ja koodi sisulist mõistmist ja õppimist kui kiirust.)
 
 ### AI kasutamine
 * AI poolt pakutud lahendused on minu poolt üle kontrollitud, rida-realt läbi kirjutatud ja kohandatud vastavalt projekti spetsiifikale.
-* Kasutasin AI abi eelkõige uute funktsionaalsuste (nt Spring Data JPA päringud, Stream-API) sügavamaks mõistmiseks 
+*  Kasutasin AI abi eelkõige uute funktsionaalsuste (nt Spring Data JPA päringud, Stream-API) sügavamaks mõistmiseks 
 * ja koodi töökindluse kontrollimiseks. Kogu rakenduse arhitektuurne loogika ja ärireeglite defineerimine on minu kontrolli all.
 
-* **Abi projekti arhidektuuri planeerimises** 
-* **Restorani saaliplaani koordinaatide loogika osas konsulteerimine.** 
-* **Entity klasside sisu valideerimine ja ülevaatus** 
-* **Tugi andmebaasiühenduse silumisel ja konfiguratsiooni kontrollimisel** 
-* **Konsultatsioon andmete genereerimise (MockDataService) loogika ja ajahalduse osas** 
-* **Java Stream API funktsionaalsuse õppimine** 
-* **SearchService' filtreerimisalgoritmi valideerimine** 
-* **AI aitas meelde tuletada sort() ja Integer.compare kirjutamise loogikat** 
-* **Konsulteerisin AI-ga, et luua existsBy päring ReservationRepository-s.** 
-* **Konsulteerisin AI-ga heade & selgete commit-sõnumite loomiseks** 
+* Abi projekti arhidektuuri planeerimises
+* Restorani saaliplaani koordinaatide loogika osas konsulteerimine. 
+* Entity klasside sisu valideerimine ja ülevaatus
+* Tugi andmebaasiühenduse silumisel ja konfiguratsiooni kontrollimisel
+* Konsultatsioon andmete genereerimise (MockDataService) loogika ja ajahalduse osas 
+* Java Stream API funktsionaalsuse õppimine
+* SearchService' filtreerimisalgoritmi valideerimine
+* AI aitas meelde tuletada sort() ja Integer.compare kirjutamise loogikat
+* Konsulteerisin AI-ga, et luua existsBy päring ReservationRepository-s. 
+* Konsulteerisin AI-ga heade & selgete commit-sõnumite loomiseks
