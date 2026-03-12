@@ -36,4 +36,6 @@ public class RestaurantTableDto implements Serializable {
 
     private Boolean isPrivate = false;
 
+    private Boolean isAvailable;
+
 }

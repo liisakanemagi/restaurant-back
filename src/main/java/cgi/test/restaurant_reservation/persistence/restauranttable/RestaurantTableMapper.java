@@ -12,6 +12,7 @@ public interface RestaurantTableMapper {
 
     List<RestaurantTableDto> toRestaurantTableDtos(List<RestaurantTable> restaurantTables);
 
+    @Mapping(target = "isAvailable", ignore = true)
     RestaurantTableDto toRestaurantTableDto (RestaurantTable restaurantTable);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)

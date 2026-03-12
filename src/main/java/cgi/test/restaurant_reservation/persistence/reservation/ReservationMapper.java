@@ -8,10 +8,12 @@ import java.util.List;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING)
 public interface ReservationMapper {
+
     Reservation toReservation (ReservationInfo reservationInfo);
 
     @Mapping(source = "restaurantTable.id", target = "restaurantTableId")
     ReservationDto toReservationDto(Reservation reservation);
+
 
     List<ReservationDto> toReservationDtos(List<Reservation> reservation);
 

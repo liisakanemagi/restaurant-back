@@ -49,4 +49,5 @@ public class RestaurantTable {
     @Column(name = "is_private")
     private Boolean isPrivate = false;
 
+
 }

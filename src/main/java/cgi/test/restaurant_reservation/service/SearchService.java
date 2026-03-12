@@ -27,12 +27,24 @@ public class SearchService {
         List<Integer> occupiedRestaurantTableIds = getOccupiedRestaurantTables(startTime);
         List<RestaurantTable> restaurantTables = restaurantTableRepository.findAll();
 
-        List<RestaurantTable> suitableRestaurantTables = getSuitableRestaurantTables(guestCount, isPrivate, isAccessible,
-                isWindowSeat, restaurantTables, occupiedRestaurantTableIds);
+        List<RestaurantTableDto> restaurantTableDtos = new ArrayList<>();
 
-        sortSuitableRestaurantTables(guestCount, suitableRestaurantTables);
+        for (RestaurantTable restaurantTable : restaurantTables) {
+            RestaurantTableDto restaurantTableDto = restaurantTableMapper.toRestaurantTableDto(restaurantTable);
 
-        return restaurantTableMapper.toRestaurantTableDtos(suitableRestaurantTables);
+            Boolean isOccupied = (occupiedRestaurantTableIds.contains(restaurantTable.getId()));
+            Boolean hasEnoughSeats = (restaurantTable.getCapacity() >= guestCount);
+            Boolean matchesPrivate = (isPrivate == null || restaurantTable.getIsPrivate().equals(isPrivate));
+            Boolean matchesAccessible = (isAccessible == null || restaurantTable.getIsAccessible().equals(isAccessible));
+            Boolean matchesWindowSeat = (isWindowSeat == null || restaurantTable.getIsWindowSeat().equals(isWindowSeat));
+
+            restaurantTableDto.setIsAvailable(!isOccupied && hasEnoughSeats && matchesPrivate && matchesAccessible && matchesWindowSeat);
+            restaurantTableDtos.add(restaurantTableDto);
+        }
+
+        sortSuitableRestaurantTables(guestCount, restaurantTableDtos);
+
+       return restaurantTableDtos;
     }
 
     private List<Integer> getOccupiedRestaurantTables(LocalDateTime startTime) {
@@ -42,31 +54,14 @@ public class SearchService {
                 .map(reservation -> reservation.getRestaurantTable().getId()).toList();
     }
 
-    private static List<RestaurantTable> getSuitableRestaurantTables(Integer guestCount, Boolean isPrivate, Boolean isAccessible,
-                                                                     Boolean isWindowSeat, List<RestaurantTable> restaurantTables,
-                                                                     List<Integer> occupiedRestaurantTableIds) {
-        List<RestaurantTable> suitableRestaurantTables = new ArrayList<>();
-        for (RestaurantTable restaurantTable : restaurantTables) {
-            if (!occupiedRestaurantTableIds.contains(restaurantTable.getId()) && restaurantTable.getCapacity() >= guestCount) {
 
-                Boolean matchesPrivate = (isPrivate == null || restaurantTable.getIsPrivate().equals(isPrivate));
-                Boolean matchesAccessible = (isAccessible == null || restaurantTable.getIsAccessible().equals(isAccessible));
-                Boolean matchesWindowSeat = (isWindowSeat == null || restaurantTable.getIsWindowSeat().equals(isWindowSeat));
-                if (matchesPrivate && matchesAccessible && matchesWindowSeat) {
-                    suitableRestaurantTables.add(restaurantTable);
-                }
-            }
-        }
-        return suitableRestaurantTables;
-    }
-
-    private static void sortSuitableRestaurantTables(Integer guestCount, List<RestaurantTable> suitableRestaurantTables) {
-        suitableRestaurantTables.sort((t1, t2) -> {
-            int waste1 = t1.getCapacity() - guestCount;
-            int waste2 = t2.getCapacity() - guestCount;
-            return Integer.compare(waste1, waste2);
-        });
-    }
+private static void sortSuitableRestaurantTables(Integer guestCount, List<RestaurantTableDto> restaurantTableDtos) {
+    restaurantTableDtos.sort((t1, t2) -> {
+        int waste1 = t1.getCapacity() - guestCount;
+        int waste2 = t2.getCapacity() - guestCount;
+        return Integer.compare(waste1, waste2);
+    });
+}
 
 }
 
