@@ -23,7 +23,7 @@ public class SearchController {
 
     public List<RestaurantTableDto> getFilteredRestaurantTables(
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startTime,
-            @RequestParam Integer guestCount,
+            @RequestParam(required = false) Integer guestCount,
             @RequestParam(required = false) Boolean isPrivate,
             @RequestParam(required = false) Boolean isAccessible,
             @RequestParam(required = false) Boolean isWindowSeat) {
