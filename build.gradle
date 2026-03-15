@@ -36,7 +36,10 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
 
     // PostgreSQL (lisatud selge versioon)
-    runtimeOnly 'org.postgresql:postgresql:42.7.3'
+    // runtimeOnly 'org.postgresql:postgresql:42.7.3'
+
+    // H2 Database
+    runtimeOnly 'com.h2database:h2'
 
     implementation 'org.mapstruct:mapstruct:1.6.3'
     annotationProcessor 'org.mapstruct:mapstruct-processor:1.6.3'
