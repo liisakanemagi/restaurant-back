@@ -24,6 +24,7 @@ public class MockDataService {
         this.reservationRepository = reservationRepository;
     }
 
+    //AI abi
     @EventListener(ApplicationReadyEvent.class)
     public void setUpMockReservations() {
 

@@ -21,6 +21,7 @@ public class SearchService {
     private final RestaurantTableRepository restaurantTableRepository;
     private final RestaurantTableMapper restaurantTableMapper;
 
+    //Mõningane AI abi
     public List<RestaurantTableDto> getFilteredRestaurantTables(LocalDateTime startTime, Integer guestCount,
                                                                 Boolean isPrivate, Boolean isAccessible, Boolean isWindowSeat) {
 
